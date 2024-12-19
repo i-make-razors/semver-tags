@@ -1,5 +1,5 @@
-name: 'Semver tags'
-description: 'Gets the previous semver tag and calculates the next version. Optionally apply the version as a new tag.'
+name: 'Semver Tags'
+description: 'Gets the previous semver tag and calculates the next version.'
 branding:
   icon: 'arrow-up-circle'
   color: 'gray-dark'
@@ -19,53 +19,16 @@ inputs:
     description: 'What value should be incremented?'
     required: false
     default: patch
-  create-release:
-    description: 'A value to set whether to create a release along with the tag. Values can be true|false|branch_name.'
-    required: false    
-    default: true
   prerelease:
     description: 'The prerelease tag to use.'
     required: false
-  metadata:
-    description: 'The metadata to use.'
-    required: false
-  previous-major-version:
-    description: 'A value to use for the major version when searching for the previous version tag.'
-    required: false    
-  previous-minor-version:
-    description: 'A value to use for the minor version when searching for the previous version tag.'
-    required: false 
-  previous-prerelease:
-    description: 'A value to use for the prerelease value when searching for the previous version tag.'
-    required: false        
-  previous-metadata:
-    description: 'A value to use for the metadata value when searching for the previous version tag.'
-    required: false   
-  add-minor-tag:
-    description: 'Adds/updates a tag for the major.minor version if the semver version is not a prerelease.'
-    required: false
-    default: false
-  add-major-tag:
-    description: 'Adds/updates a tag for the major version if the semver version is not a prerelease.'
-    required: false
-    default: false
-  dry-run:
-    description: 'Performs a version calculation without committing a tag.'
-    required: false
-    default: false
 outputs:
   semantic-version:
     description: 'The calculated version number.'
   core-version: 
     description: 'The core version part of the semantic version.'
-  major-version: 
-    description: 'The major version part of the semantic version.'
-  minor-version: 
-    description: 'The minor version part of the semantic version.'
-  patch-version: 
-    description: 'The patch version part of the semantic version.'
-  previous-version:
-    description: 'The previous version number.'
+  version-tag: 
+    description: 'The complete tag for the calculated version'
 runs:
   using: 'node12'
   main: 'dist/index.js'
