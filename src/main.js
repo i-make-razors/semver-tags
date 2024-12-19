@@ -72,10 +72,9 @@ async function calculateNextVersion(previous) {
 
   if (ref != defaultRef) {
     //not on default branch
-    console.log(`ref: ${ref}, defaultRef: ${defaultRef}`)
     let shortSha = commitSha.substring(0, 6)
     let prerelease = `-pr.${shortSha}`
-    console.log(`Not on main branch. Adding '${ prerelease }' to version number.`);
+    console.log(`Not on main branch (ref: ${ref}, defaultRef: ${defaultRef}). Adding '${ prerelease }' to version number.`);
     semanticVersion += `${prerelease}`;
   }
 

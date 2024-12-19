@@ -24,7 +24,7 @@ inputs:
   default-ref:
     description: 'The value for the repos default ref'
     required: false
-    default: /ref/heads/main
+    default: ref/heads/main
 outputs:
   previous-version:
     description: 'The previous version isolated by the action'
