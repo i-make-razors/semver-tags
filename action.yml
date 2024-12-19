@@ -7,21 +7,24 @@ inputs:
   GITHUB_TOKEN:
     description: The github token.
     required: true
+  ref:
+    description: 'The ref being targeted'
+    required: true
+  commit-sha:
+    description: 'The SHA of the current commit'
+    required: true
   tag-prefix:
     description: 'A value prefixed to the version number when tagging the repo.'
     required: false
     default: ''
-  default-version:
-    description: 'The version number that will be used if no semver tag is found.'
-    required: false
-    default: '1.0.0'
   incremented-value:
     description: 'What value should be incremented?'
     required: false
     default: patch
-  prerelease:
-    description: 'The prerelease tag to use.'
+  default-ref:
+    description: 'The value for the repos default ref'
     required: false
+    default: /ref/heads/main
 outputs:
   previous-version:
     description: 'The previous version isolated by the action'
