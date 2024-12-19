@@ -27540,7 +27540,9 @@ function generateVersionPattern(options) {
 async function calculateNextVersion(previous) {
   const defaultVersion = core.getInput('default-version');
   const incrementedValue = core.getInput('incremented-value');
-  const prerelease = core.getInput('prerelease');
+  const ref = core.getInput('ref');
+  const commitSha = core.getInput('commit-sha');
+  const defaultRef = core.getInput('default-ref');
   const tagPrefix = core.getInput('tag-prefix');
   const versionPattern = generateVersionPattern({ tagPrefix: tagPrefix });
 
@@ -27595,9 +27597,12 @@ async function calculateNextVersion(previous) {
   console.log(`Core version: ${semanticVersion}`);
   core.setOutput('core-version', semanticVersion);
 
-  if(prerelease) {
-    console.log(`Prerelease configured. Adding '-${ prerelease }' to version number.`);
-    semanticVersion += `-${prerelease}`;
+  if (ref != defaultRef) {
+    //not on default branch
+    let shortSha = commitSha.substring(0, 6)
+    let prerelease = `-pr.${shortSha}`
+    console.log(`Not on main branch. Adding '${ prerelease }' to version number.`);
+    semanticVersion += `${prerelease}`;
   }
 
   console.log(`Semantic version: ${semanticVersion}`);
