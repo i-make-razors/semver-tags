@@ -67,16 +67,12 @@ async function calculateNextVersion(previous) {
     semanticVersion += coreVersion;
   }
 
-  let versionTag = `${tagPrefix}${semanticVersion}`
-
-  console.log(`Version Tag: ${versionTag}`);
-  core.setOutput('version-tag', versionTag);
-
   console.log(`Core version: ${semanticVersion}`);
   core.setOutput('core-version', semanticVersion);
 
   if (ref != defaultRef) {
     //not on default branch
+    console.log(`ref: ${ref}, defaultRef: ${defaultRef}`)
     let shortSha = commitSha.substring(0, 6)
     let prerelease = `-pr.${shortSha}`
     console.log(`Not on main branch. Adding '${ prerelease }' to version number.`);
@@ -85,6 +81,11 @@ async function calculateNextVersion(previous) {
 
   console.log(`Semantic version: ${semanticVersion}`);
   core.setOutput('semantic-version', semanticVersion);
+
+  let versionTag = `${tagPrefix}${semanticVersion}`
+
+  console.log(`Version Tag: ${versionTag}`);
+  core.setOutput('version-tag', versionTag);
 }
 
 async function run() {
