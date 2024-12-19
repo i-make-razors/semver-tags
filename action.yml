@@ -23,6 +23,8 @@ inputs:
     description: 'The prerelease tag to use.'
     required: false
 outputs:
+  previous-version:
+    description: 'The previous version isolated by the action'
   semantic-version:
     description: 'The calculated version number.'
   core-version: 
