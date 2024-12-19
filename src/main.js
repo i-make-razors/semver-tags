@@ -70,7 +70,7 @@ async function calculateNextVersion(previous) {
   console.log(`Core version: ${semanticVersion}`);
   core.setOutput('core-version', semanticVersion);
 
-  if (ref != defaultRef) {
+  if (ref.localeCompare(defaultRef) != 0) {
     //not on default branch
     let shortSha = commitSha.substring(0, 6)
     let prerelease = `-pr.${shortSha}`
