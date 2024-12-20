@@ -27540,11 +27540,11 @@ function generateVersionPattern(options) {
 async function calculateNextVersion(previous) {
   const defaultVersion = core.getInput('default-version');
   const incrementedValue = core.getInput('incremented-value');
-  const ref = core.getInput('ref');
-  const commitSha = core.getInput('commit-sha');
   const defaultRef = core.getInput('default-ref');
   const tagPrefix = core.getInput('tag-prefix');
   const versionPattern = generateVersionPattern({ tagPrefix: tagPrefix });
+  const ref = github.context.ref;
+  const commitSha = github.context.sha;
 
   let semanticVersion = '';
   let major = '';
