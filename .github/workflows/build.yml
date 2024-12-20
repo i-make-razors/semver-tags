@@ -15,11 +15,23 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: pg-pgi-4gb-1cpu
     steps:
+      - name: Set Variables
+        uses: procter-gamble/iiot-infra-test/set-env@main
+        with:
+          environment: dev
+      - name: AZ Login
+        uses: procter-gamble/iiot-infra-test/az-login@main
+      - name: Prepare Helm Release
+        id: prepare
+        run: |
+          githubPat=$(az keyvault secret show --vault-name "${AZ_KEYVAULT_NAME}" --name iotedge--general--gitops--github--pat --query 'value' --output tsv)
+          echo "::add-mask::$githubPat"
+          echo "GITHUB_PAT=$githubPat" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.prepare.outputs.GITHUB_PAT }}
       - uses: actions/setup-node@v3
         with:
           node-version: 16

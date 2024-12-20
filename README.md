@@ -7,7 +7,8 @@ This is a fork of [SOLIDSoftworks/semver-tag](https://github.com/SOLIDSoftworks/
 
 ## Inputs
 
-### `GITHUB_TOKEN` **required** 
+### `GITHUB_TOKEN` **required**
+
 The github token.
 
 ### `tag-prefix`
